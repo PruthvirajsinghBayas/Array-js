@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Students Marks Calculator</title>
+</head>
+<body>
+    <h1>Student Marks Calculator</h1>
+  <label>Maths</label> <input type="number" id="maths">
+  <label>English</label> <input type="number" id="english">
+  <label>Marathi</label> <input type="number" id="marathi">
+  <label>Science</label> <input type="number" id="science">
+  <label>Hindi</label> <input type="number" id="hindi">
+<button onclick="submitMartks()" class="btn btn-primary mt-2">Show Result</button>
+<div>
+  <p class="lead">Average : <span id="avgMarks"></span></p>
+  <p class="lead">Maximum Marks : <span id="maxMarks"></span></p>
+  <p class="lead">Minimum Marks : <span id="minMarks"></span></p>
+
+</div>
+</div>
+    
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        mathsInput = document.getElementById('maths')
+englishInput = document.getElementById('english')
+marathiInput = document.getElementById('marathi')
+scienceInput = document.getElementById('science')
+hindiInput = document.getElementById('hindi')
+avgInput = document.querySelector('#avgMarks')
+maxInput = document.querySelector('#maxMarks')
+minInput = document.querySelector('#minMarks')
+marks = []
+
+
+function submitMartks(){
+  maths =Number(mathsInput.value)
+  marks.push(maths)
+  english =parseInt(englishInput.value)
+  marks.push(english)
+  marathi = Number(marathiInput.value)
+  marks.push(marathi)
+  science = Number(scienceInput.value)
+  marks.push(science)
+  hindi = Number(hindiInput.value)
+  marks.push(hindi)
+  console.log(marks)
+  avg = marks.reduce((sum,mark)=>sum+mark,0) / marks.length
+  console.log(avg)
+  avgInput.innerHTML = avg
+
+  sortedMarks = marks.sort((a, b) => a - b)
+  maxInput.innerHTML = sortedMarks[sortedMarks.length - 1]
+  minInput.innerHTML = sortedMarks[0]
+}
+
+    </script>
+</body>
+</html>

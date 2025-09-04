@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sort Names Alphabetically</title>
+<style>
+  body{font-family:system-ui;background:#f8fafc;padding:24px}
+  .app{max-width:560px;margin:auto;background:#fff;border:1px solid #e6e8ec;border-radius:10px;padding:18px}
+  .row{display:flex;gap:8px;margin-bottom:10px}
+  input{flex:1;padding:10px;border:1px solid #cfd3da;border-radius:6px}
+  button{padding:9px 12px;border:0;border-radius:6px;background:#2563eb;color:#fff;cursor:pointer}
+  button.secondary{background:#64748b}
+  .list{border:1px solid #e6e8ec;border-radius:8px;padding:12px;min-height:44px}
+</style>
+</head>
+<body>
+<div class="app">
+  <h2>Sort Names Alphabetically</h2>
+  <div class="row">
+    <input id="name" placeholder="Enter name">
+    <button id="add">Add Name</button>
+    <button id="sort" class="secondary">Sort</button>
+    <button id="reset" class="secondary">Reset</button>
+  </div>
+  <div class="list" id="out"></div>
+</div>
+
+<script>
+  const names=[];
+  const out = document.getElementById('out');
+
+  function show(){ out.textContent = names.join(', '); }
+
+  document.getElementById('add').addEventListener('click', ()=>{
+    const v = document.getElementById('name').value.trim();
+    if(v){ names.push(v); document.getElementById('name').value=''; show(); }
+  });
+
+  document.getElementById('sort').addEventListener('click', ()=>{
+    // localeCompare handles case and locale better
+    names.sort((a,b)=> a.localeCompare(b));
+    show();
+  });
+
+  document.getElementById('reset').addEventListener('click', ()=>{
+    names.length=0; show();
+  });
+
+  show();
+</script>
+</body>
+</html>
